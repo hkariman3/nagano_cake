@@ -1,10 +1,67 @@
-<p id="notice"></p>
-<div class="header">
- <div class="container">
-   <div class="row">
-     <div class="col-2">
-      <h2 class="border">LOGO</h2>
-     </div>
-   </div>
- </div>
-</div>
+<nav class="navbar navbar-expand-lg navbar-light bg-light">
+  <a class="navbar-brand border border-dark pt-2 pb-2 pl-4 pr-4" href="#">LOGO</a>
+  <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+    <span class="navbar-toggler-icon"></span>
+  </button>
+
+  <div class="collapse navbar-collapse flex-column ml-auto" id="navbarSupportedContent">
+
+    <ul class="navbar-nav ml-auto">
+      <li class="nav-item active">
+          <%= link_to "About",root_path,class: "nav-link" %>
+      </li>
+      <li class="nav-item">
+          <%= link_to "商品一覧",root_path,class: "nav-link" %>
+      </li>
+      <li class="nav-item">
+          <%= link_to "新規登録",root_path,class: "nav-link" %>
+      </li>
+      <li class="nav-item">
+          <%= link_to "ログイン",root_path,class: "nav-link" %>
+      </li>
+    </ul>
+    <div class="ml-auto">
+    <form class="form-inline my-2 my-lg-0">
+      <input class="form-control mr-sm-2" type="search" placeholder="Search" aria-label="Search">
+      <button class="btn btn-outline-success my-2 my-sm-0" type="submit">Search</button>
+    </form>
+  </div>
+  </div>
+</nav>
+
+<% if customer_signed_in? %>
+<nav class="navbar navbar-expand-lg navbar-light bg-light">
+  <a class="navbar-brand border border-dark pt-2 pb-2 pl-4 pr-4" href="#">LOGO</a>
+  <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+    <span class="navbar-toggler-icon"></span>
+  </button>
+
+  <div class="collapse navbar-collapse flex-column ml-auto" id="navbarSupportedContent">
+
+    <ul class="navbar-nav ml-auto">
+      <li class="nav-item active">
+          <%= link_to "商品一覧",root_path,class: "nav-link" %>
+      </li>
+      <li class="nav-item">
+          <%= link_to "会員一覧",root_path,class: "nav-link" %>
+      </li>
+      <li class="nav-item">
+          <%= link_to "注文履歴一覧",root_path,class: "nav-link" %>
+      </li>
+      <li class="nav-item">
+          <%= link_to "ジャンル一覧",root_path,class: "nav-link" %>
+      </li>
+      <li class="nav-item">
+          <%= link_to "ログアウト",root_path,class: "nav-link" %>
+      </li>
+    </ul>
+    <div class="ml-auto">
+    <form class="form-inline my-2 my-lg-0">
+      <input class="form-control mr-sm-2" type="search" placeholder="Search" aria-label="Search">
+      <button class="btn btn-outline-success my-2 my-sm-0" type="submit">Search</button>
+    </form>
+  </div>
+  </div>
+</nav>
+
+<% end %>
