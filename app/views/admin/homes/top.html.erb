@@ -1,0 +1,21 @@
+<%= render'admin/adminheader' %>
+
+<h4>注文履歴一覧</h4>
+<table>
+  <tr>
+    <th>購入日時</th>
+    <th>購入者</th>
+    <th>注文個数</th>
+    <th>注文ステータス</th>
+  </tr>
+
+<% @top.each do |f| %>
+  <tr>
+    <td><%= f.created_at %></td>
+    <td><%= f.orders.customers.name %></td>
+    <td><%= f.order_details.total_piece %></td>
+    <td><%= f.status %></td>
+  </tr>
+<% end %>
+</table>
+

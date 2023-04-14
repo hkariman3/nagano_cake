@@ -1,29 +1,131 @@
-<h2>Sign up</h2>
+<%= render "public/publicheader" %>
+<div class = "container">
+  <div class = "row my-5">
+    <div class = "col-md-3 offset-2">
+      <h2 class = "bg-secondary text-center">新規会員登録</h2>
+    </div>
+  </div>
 
 <%= form_for(resource, as: resource_name, url: registration_path(resource_name)) do |f| %>
-  <%= render "publics/shared/error_messages", resource: resource %>
+  <%= render "public/shared/error_messages", resource: resource %>
 
-  <div class="field">
-    <%= f.label :email %><br />
-    <%= f.email_field :email, autofocus: true, autocomplete: "email" %>
+  <div class = "row my-3">
+    <div class = "col-md-2">
+      <%= f.label :last_name, "名前" %>
+    </div>
+
+    <div class = "col-md-1 offset-1">（姓）</div>
+    <div class = "col-md-3">
+      <%= f.text_field :last_name, class:'form-control', placeholder: "令和" %>
+    </div>
+
+    <div class = "col-md-1">（名）</div>
+    <div class = "col-md-3">
+      <%= f.text_field :first_name, class:'form-control', placeholder: "道子" %>
+    </div>
+  </div>
+
+  <div class = "row my-3">
+    <div class = "col-md-2">
+      <%= f.label :last_name_kana, "フリガナ" %>
+    </div>
+
+    <div class = "col-md-1 offset-1">(セイ)</div>
+    <div class = "col-md-3">
+      <%= f.text_field :last_name_kana,class:'form-control', placeholder: "レイワ" %>
+    </div>
+
+    <div class = "col-md-1">(メイ)</div>
+    <div class = "col-md-3">
+      <%= f.text_field :first_name_kana,class:'form-control', placeholder: "ミチコ" %>
+    </div>
   </div>
 
   <div class="field">
-    <%= f.label :password %>
-    <% if @minimum_password_length %>
-    <em>(<%= @minimum_password_length %> characters minimum)</em>
-    <% end %><br />
-    <%= f.password_field :password, autocomplete: "new-password" %>
+    <div class = "row my-3">
+      <div class = "col-md-2">
+        <%= f.label :email, "メールアドレス" %>
+      </div>
+      <div class = "col-md-3 offset-2">
+      <%= f.email_field :email, class:'form-control', autofocus: true, autocomplete: "email", placeholder: "sample@example.com" %>
+      </div>
+    </div>
+  </div>
+
+  <div class = "row my-3">
+    <div class = "col-md-3">
+      <%= f.label :postal_code, "郵便番号(ハイフン無なし)" %>
+    </div>
+
+    <div class = "col-md-3 offset-1">
+      <%= f.text_field :postal_code,class:'form-control', placeholder: "0000000" %>
+    </div>
+  </div>
+
+  <div class = "row my-3">
+    <div class = "col-md-2">
+      <%= f.label :address, "住所" %>
+    </div>
+
+    <div class = "col-md-7 offset-2">
+      <%= f.text_field :address,class:'form-control', placeholder: "東京都渋谷区代々木神園町０−０" %>
+    </div>
+  </div>
+
+  <div class = "row my-3">
+    <div class = "col-md-3">
+      <%= f.label :telephone_number, "電話番号（ハイフンなし）" %>
+    </div>
+
+    <div class = "col-md-3 offset-1">
+      <%= f.text_field :telephone_number,class:'form-control', placeholder: "0000000000" %>
+    </div>
   </div>
 
   <div class="field">
-    <%= f.label :password_confirmation %><br />
-    <%= f.password_field :password_confirmation, autocomplete: "new-password" %>
+  <div class = "row my-3">
+    <div class = "col-md-3">
+        <%= f.label :password, "パスワード（６文字以上）" %>
+        <% if @minimum_password_length %>
+         <em><% @minimum_password_length %></em>
+        <% end %>
+    </div>
+
+    <div class = "col-md-3 offset-1">
+        <%= f.password_field :password,class:'form-control', autocomplete: "new-password" %>
+    </div>
+  </div>
   </div>
 
-  <div class="actions">
-    <%= f.submit "Sign up" %>
+  <div class="field">
+  <div class = "row my-3">
+    <div class = "col-md-2">
+      <%= f.label :password_confirmation, "パスワード（確認用）" %>
+    </div>
+
+    <div class = "col-md-3 offset-2">
+      <%= f.password_field :password_confirmation,class:'form-control', autocomplete: "new-password" %>
+    </div>
+  </div>
+  </div>
+
+  <div class = "row">
+    <div class = "col-md-2 offset-4">
+      <div class="actions">
+        <%= f.submit "新規会員登録", class:'btn btn-success form-control' %>
+      </div>
+    </div>
   </div>
 <% end %>
+<div class = "row my-3">
+  <div class = "col-md-4">
+    <h2 class = "bg-secondary text-center">既に登録済みの方</h2>
+  </div>
+</div>
 
-<%= render "public/shared/links" %>
+<div class = "row">
+  <div class = "col">
+    <%= render "public/shared/links",class:'text-decoration-underline' %><p>からログインしてください。</p>
+  </div>
+</div>
+</div>

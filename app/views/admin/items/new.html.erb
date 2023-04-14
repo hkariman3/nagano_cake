@@ -7,7 +7,7 @@
 </div>
 
 <%= form_with model: @item, url: admin_items_path, method: :post do |f| %>
-<div class ="row">
+<div class ="row my-3">
   <div class = "col">
     <h4>商品画像</h4>
   </div>
@@ -16,25 +16,25 @@
   </div>
 </div>
 
-<div class ="row">
+<div class ="row my-3">
   <div class ="col">
     <h4>商品名</h4>
   </div>
   <div class ="col">
-    <%= f.text_field :name %>
+    <%= f.text_field :name, class:"form-control" %>
   </div>
 </div>
 
-<div class ="row">
+<div class ="row my-3">
   <div class = "col">
     <h4>商品説明</h4>
   </div>
   <div class = "col">
-    <%= f.text_area :introduction %>
+    <%= f.text_area :introduction, class:"form-control" %>
   </div>
 </div>
 
-<div class ="row">
+<div class ="row my-3">
   <div class = "col">
     <h4>ジャンル</h4>
   </div>
@@ -43,16 +43,16 @@
   </div>
 </div>
 
-<div class ="row">
+<div class ="row my-3">
   <div class = "col">
     <h4>税抜価格</h4>
   </div>
   <div class = "col">
-    <%= f.text_field :price %>円
+    <%= f.text_field :price, class:"form-control" %>円
   </div>
 </div>
 
-<div class ="row">
+<div class ="row my-3">
   <div class = "col">
     <h4>販売ステータス</h4>
   </div>
@@ -70,7 +70,7 @@
   </div>
   </div>
 </div>
-<div class = "row">
+<div class = "row my-3">
   <div class = "col-2 offset-5">
 <%= f.submit'新規登録', class:"btn-success" %>
   </div>

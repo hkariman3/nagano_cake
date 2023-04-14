@@ -1,0 +1,41 @@
+<div class = "container">
+<%= render'admin/adminheader' %>
+
+  <div class = "row">
+    <div class = "col">購入者</div>
+
+    <div class = "col"><%= @order.customer.name %></div>
+  </div>
+
+  <div class = "row">
+    <div class = "col">注文日</div>
+
+    <div class = "col"><%= @order.created_at %></div>
+  </div>
+
+  <div class = "row">
+    <div class = "col">配送先</div>
+
+    <div class = "col"><%= @order.address %></div>
+  </div>
+
+  <div class = "row">
+    <div class = "col">支払い方法</div>
+
+    <div class = "col"><%= @order.payment_method %></div>
+  </div>
+
+<%= form_with model: @order, url: admin_order_path, method: :PATCH do |f| %>
+  <div class = "row">
+    <div class = "col">注文ステータス</div>
+
+    <div class = "col"><%= f.select :status, Order.statuses.keys.map {|k| [I18n.t("enums.order.status.#{k}"), k]}%></div>
+  </div>
+<% end %>
+
+
+
+
+
+
+</div>

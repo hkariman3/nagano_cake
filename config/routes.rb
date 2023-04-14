@@ -1,6 +1,5 @@
 Rails.application.routes.draw do
 
-
 devise_for :customers,skip: [:passwords], controllers: {
   registrations: "public/registrations",
   sessions: 'public/sessions'
@@ -30,11 +29,15 @@ get "/orders/complete" => "orders#complete"
 
 resources :address, only: [:index, :edit, :create, :update, :destroy]
 
+
+
 end
 
 namespace :admin do
 
-  get "/admin" => "admin#homes"
+  get "/" => "homes#top"
+
+  resources :sessions, only: [:new, :create, :destroy]
 
   resources :items, only: [:index, :new, :create, :show, :edit, :update]
 

@@ -1,0 +1,47 @@
+<%= render'admin/adminheader' %>
+<div class = "container">
+  <div class = "row">
+    <div class = "col-md2 offset-md2 my-3 bg-secondary">
+      <h4>会員一覧</h4>
+    </div>
+  </div>
+
+
+    <table class = "table">
+      <tr class = "bg-secondary">
+        <th>会員ID</th>
+        <th>氏名</th>
+        <th>メールアドレス</th>
+        <th>ステータス</th>
+      </tr>
+
+
+  <% @customer.each do |f| %>
+    <tr>
+        <td><%= f.id %></td>
+
+        <td>
+      <%= link_to admin_customer_path(f.id) do %>
+        <%= f.last_name %><%= f.first_name %>
+      <% end %>
+        </td>
+
+        <td><%= f.email %></td>
+
+        <td>
+              <% if f.is_deleted == true %>
+               <h5 class="text-muted">退会</h5>
+              <% else %>
+               <h5 class="text-success">有効</h5>
+              <% end %>
+        </td>
+    </tr>
+  <% end %>
+  </table>
+ <div class = "row my-1">
+   <div class = "col-md-2 offset-5">
+     <%= paginate f %>
+   </div>
+ </div>
+
+</div>

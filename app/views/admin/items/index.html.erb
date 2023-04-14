@@ -1,10 +1,19 @@
-<h3>商品一覧</h3>
+<%= render'admin/adminheader' %>
+<div class = "container">
+    <div class = "row my-3">
+        <div class = "col-md2 bg-secondary text-center">
+            <h4>商品一覧</4h>
+        </div>
+        <div class = "col-md-1 offset-6">
+            <%= button_to new_admin_item_path, method: :get do %>
+            <i class="fas fa-plus"></i>
+            <% end %>
+        </div>
 
+    </div>
 
-
-
-<table>
-    <tr>
+<table class = "table">
+    <tr class = "bg-secondary">
         <th>商品ID</th>
         <th>商品名</th>
         <th>税抜価格</th>
@@ -18,7 +27,9 @@
             <%= f.id %>
         </td>
         <td>
+          <%= link_to admin_item_path(@items.ids), class:'text-dark' do %>
             <%= f.name %>
+          <% end %>
         </td>
         <td>
             <%= f.price %>
@@ -36,3 +47,7 @@
     </tr>
 <% end %>
 </table>
+
+<%= paginate(@items) %>
+
+</div>
