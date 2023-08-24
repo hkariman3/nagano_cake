@@ -1,1 +1,54 @@
-<%= render'admin/adminheader' %>
+<%= render'public/publicheader' %>
+<div class = "container">
+
+  <div class = "row h-75">
+    <div class = "col-md-2 mt-3">
+      <table class = "table">
+        <tbody>
+          <% @genres.each do |genre| %>
+          <tr>
+            <td>
+              <%= link_to genre.name, items_path(genre_id: genre.id), class: "text-secondary" %>
+            </td>
+          </tr>
+          <% end %>
+        </tbody>
+      </table>
+    </div>
+    <div class = "col border">
+      <p>ようこそながのCAKEへ！<br>
+      このサイトは、ケーキ販売のECサイトになります。<br>
+      会員でない方も商品の閲覧はできますが、<br>
+      購入には会員登録が必要になります。</p>
+    </div>
+  </div>
+
+  <div class = "row">
+    <div class = "col">
+      <h4>新着商品</h4>
+    </div>
+  </div>
+
+  <div class = "row">
+    <div class = "col-md-10 d-flex flex-wrap">
+      <% @items.limit(4).each do |item| %>
+      <div class = "h-25 w-25 m-3">
+      <%= link_to item_path(item.id) do %>
+          <div><%= image_tag item.get_image, class:"h-50 w-100" %></div>
+
+          <div><%= item.name %></div>
+
+          <div>¥<%= item.add_tax_price.to_s(:delimited) %></div>
+      <% end %>
+      </div>
+      <% end %>
+    </div>
+  </div>
+
+  <div class = "row">
+    <div class = "col">
+      <%= link_to "全ての商品を見る＞", items_path %>
+    </div>
+  </div>
+
+</div>

@@ -1,0 +1,70 @@
+<%= render "public/publicheader" %>
+
+<div class = "container">
+
+  <div class = "row">
+    <div class = "col-md2">
+      <h4 class = "bg-secondary">配送先登録/一覧</h4>
+    </div>
+  </div>
+
+      <%= form_with model: @address, url:address_index_path, method: :POST do |address| %>
+    <div class = "row">
+      <div class = "col">
+        郵便番号（ハイフンなし）
+      </div>
+      <div class = "col">
+        <%= address.text_field :postal_code %>
+      </div>
+    </div>
+    <div class = "row">
+      <div class = "col">
+        住所
+      </div>
+      <div class = "col">
+        <%= address.text_field :address %>
+      </div>
+    </div>
+    <div class = "row">
+      <div class = "col">
+        宛名
+      </div>
+      <div class = "col">
+        <%= address.text_field :name %>
+      </div>
+    </div>
+    <div class = "row">
+      <div class = "col">
+        <%= address.submit'新規登録', class:"bg-success" %>
+      </div>
+    </div>
+      <% end %>
+
+  <div class = "row">
+    <div class = "col">
+      <table class = "table" >
+        <tr>
+          <td>郵便番号</td>
+          <td>住所</td>
+          <td>宛名</td>
+          <td>　</td>
+        </tr>
+        <% @address2.each do |address1| %>
+        <tr>
+          <td><%= address1.postal_code %></td>
+          <td><%= address1.address %></td>
+          <td><%= address1.name %></td>
+          <td>
+            <%= link_to edit_address_path(@address2.ids) do %>
+            <button class = "btn-success">編集する</button>
+            <% end %>
+            <%= link_to address_path(@address2.ids), method: :DELETE do %>
+            <button class = "btn-danger">削除する</button>
+            <% end %>
+          </td>
+        </tr>
+        <% end %>
+      </table>
+    </div>
+  </div>
+</div>

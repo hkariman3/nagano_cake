@@ -1,0 +1,38 @@
+<%= render "public/publicheader" %>
+<div class = "container">
+  <div class = "row">
+    <div class = "col-md-3">
+      <table class = "table">
+        <tbody>
+          <% @genres.each do |genre| %>
+          <tr>
+            <td>
+              <%= link_to genre.name, items_path(genre_id: genre.id), class: "text-secondary" %>
+            </td>
+          </tr>
+          <% end %>
+        </tbody>
+      </table>
+    </div>
+
+    <div class = "col offset-1">
+      <%= image_tag @item.get_image, size: "200x120" %>
+    </div>
+    <div class = "col">
+      <p><%= @item.name %></p>
+      <p><%= @item.introduction %></p>
+      <p>¥<%= @item.add_tax_price.to_s(:delimited) %>(税込)</p>
+    </div>
+  </div>
+
+    <div class = "row">
+      <div class = "col offset-5">
+        <%= form_with model: @cart, url:cart_items_path, method: :post do |f| %>
+        <%= f.hidden_field :item_id, :value => @item.id %>
+        <%= f.select :amount, *[1..10] ,  { include_blank: '個数選択'} %>
+        <%= f.submit 'カートに入れる', class:"btn-success" %>
+        <% end %>
+      </div>
+
+    </div>
+</div>

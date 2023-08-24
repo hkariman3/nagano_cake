@@ -1,0 +1,53 @@
+<%= render "public/publicheader" %>
+<div class = "container">
+
+  <div class = "row my-3">
+    <div class = "col-md2">
+<% if params[:genre_id] %>
+      <h4 class = "bg-secondary"><%= @genre.name %>一覧</h4><p>全<%= @items.count %>件</p>
+<% else %>
+      <h4 class = "bg-secondary">商品一覧</h4><p>全<%= @items1.count %>件</p>
+<% end %>
+    </div>
+  </div>
+
+  <div class = "row h-auto">
+
+    <div class = "col-md-2 mt-3">
+      <table class = "table">
+        <tbody>
+          <% @genres.each do |genre| %>
+          <tr>
+            <td>
+              <%= link_to genre.name, items_path(genre_id: genre.id), class: "text-secondary" %>
+            </td>
+          </tr>
+          <% end %>
+        </tbody>
+      </table>
+    </div>
+
+
+    <div class = "col-md-10 d-flex flex-wrap">
+
+      <% @items.each do |item| %>
+      <div class = "h-25 w-25 m-3">
+      <%= link_to item_path(item.id) do %>
+          <div><%= image_tag item.get_image, class:"h-50 w-100" %></div>
+
+          <div><%= item.name %></div>
+
+          <div><%= item.add_tax_price.to_s(:delimited) %></div>
+      <% end %>
+      </div>
+      <% end %>
+
+    </div>
+
+  </div>
+  <div class = "row mt-10">
+    <div class = "col-md-2 offset-5">
+      <%= paginate @items %>
+    </div>
+  </div>
+</div>

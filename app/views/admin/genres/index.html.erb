@@ -21,7 +21,7 @@
 <% @genres.each do |g| %>
  <tr>
     <td><%= g.name %></td>
-    <td><%= link_to"編集する",edit_admin_customer_path(:id) %></td>
+    <td><%= link_to"編集する",edit_admin_genre_path(@genres.ids) %></td>
  </tr>
 <% end %>
 </table>

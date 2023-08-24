@@ -12,8 +12,8 @@
 <% @top.each do |f| %>
   <tr>
     <td><%= f.created_at %></td>
-    <td><%= f.orders.customers.name %></td>
-    <td><%= f.order_details.total_piece %></td>
+    <td><%= f.name %></td>
+    <td><%= f.order_details.amount %></td>
     <td><%= f.status %></td>
   </tr>
 <% end %>
