@@ -17,14 +17,14 @@ get "/cart_items/destroy_all" => "cart_items#destroy_all"
 
 resources :items, only: [:index, :show]
 get "/customers/unsubscribe" => "customers#unsubscribe"
-get "/customers/withdraw" => "customers#withdraw"
+patch "/customers/withdraw" => "customers#withdraw"
 get "/orders/thanks" => "orders#thanks"
 
 resources :customers, only: [:edit, :show, :update]
 
 resources :cart_items, only: [:index, :update, :create, :destroy]
 
-resources :orders, only: [:new, :index, :show, :create]
+resources :orders, only: [:new, :index, :show, :create,:update]
 post "/orders/confirm" => "orders#confirm"
 get "/orders/complete" => "orders#complete"
 resources :address, only: [:index, :edit, :create, :update, :destroy]
@@ -36,8 +36,6 @@ end
 namespace :admin do
 
   get "/" => "homes#top"
-
-  resources :sessions, only: [:new, :create, :destroy]
 
   resources :items, only: [:index, :new, :create, :show, :edit, :update]
 

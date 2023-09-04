@@ -1,16 +1,17 @@
-<div class = "container">
 <%= render'admin/adminheader' %>
+<div class = "container">
+  <h4>注文履歴詳細</h4>
 
   <div class = "row">
     <div class = "col">購入者</div>
 
-    <div class = "col"><%= @order.customer.name %></div>
+    <div class = "col"><%= @order.name %></div>
   </div>
 
   <div class = "row">
     <div class = "col">注文日</div>
 
-    <div class = "col"><%= @order.created_at %></div>
+    <div class = "col"><%= @order.created_at.strftime('%Y/%m/%d %H:%M') %></div>
   </div>
 
   <div class = "row">
@@ -22,7 +23,7 @@
   <div class = "row">
     <div class = "col">支払い方法</div>
 
-    <div class = "col"><%= @order.payment_method %></div>
+    <div class = "col"><%= @order.payment_method_i18n %></div>
   </div>
 
 <%= form_with model: @order, url: admin_order_path, method: :PATCH do |f| %>
@@ -30,8 +31,49 @@
     <div class = "col">注文ステータス</div>
 
     <div class = "col"><%= f.select :status, Order.statuses.keys.map {|k| [I18n.t("enums.order.status.#{k}"), k]}%></div>
+    <%= f.submit'更新', class:"btn-success" %>
   </div>
 <% end %>
+
+<div class = "row">
+  <div class = "col">
+    <table class="table">
+      <thead class="table-light">
+        <th>商品名</th>
+        <th>単価(税込)</th>
+        <th>数量</th>
+        <th>小計</th>
+        <th>製作ステータス</th>
+        <th></th>
+      </thead>
+      <% @order_details.each do |order_detail| %>
+      <% @total = @total + order_detail.sub_total %>
+      <tbody>
+        <td><%= order_detail.item.name %></td>
+        <td><%= order_detail.price %>(<%= order_detail.add_tax_price %>)</td>
+        <td><%= order_detail.amount %></td>
+        <td><%= order_detail.sub_total %></td>
+        <%= form_with model: order_detail, url: admin_order_detail_path(order_detail), method: :patch do |f| %>
+        <td><%= f.select :making_status, OrderDetail.making_statuses.keys.map {|k| [I18n.t("enums.order_detail.making_status.#{k}"), k]}%></td>
+        <td><%= f.submit"更新", class:'btn-success' %></td>
+        <% end %>
+      </tbody>
+      <% end %>
+    </table>
+  </div>
+</div>
+<div class = "row">
+  <div class = "col">
+    <p><strong>商品合計</strong></p>
+    <p><strong>送料</strong></p>
+    <p><strong>請求金額合計</strong></p>
+  </div>
+  <div class = "col">
+    <p><%= @total %></p>
+    <p><%= @order.shipping_cost %></p>
+    <p><%= @order.total_payment %></p>
+  </div>
+</div>
 
 
 

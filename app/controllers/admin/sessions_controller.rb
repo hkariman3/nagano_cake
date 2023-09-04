@@ -25,7 +25,7 @@ class Admin::SessionsController < Devise::SessionsController
   #   devise_parameter_sanitizer.permit(:sign_in, keys: [:attribute])
   # end
 
-  protected
+protected
 
   def customer_state
   ## 【処理内容1】 入力されたemailからアカウントを1件取得

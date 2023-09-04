@@ -75,6 +75,7 @@
             <br>
             <%= @order.name %>
             <%= f.hidden_field :name, :value => @order.name %>
+            <%= f.hidden_field :status_i18n, {value: 0} %>
         </div>
     </div>
     <div class = "row">

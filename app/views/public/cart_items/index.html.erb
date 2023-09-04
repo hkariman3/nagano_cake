@@ -60,8 +60,10 @@
   </div>
   <div class = "row">
     <div class = "col-md-2 offset-5">
+      <% if current_customer.cart_items.any? %>
       <%= link_to new_order_path do %>
       <button class = "btn-success">情報入力に進む</button>
+      <% end %>
       <% end %>
     </div>
   </div>

@@ -27,11 +27,13 @@
             <td>〒<%= order.postal_code %><br>
             <%= order.address %><br>
             <%= order.name %></td>
+            <td>
             <% order.order_details.each do |order_details| %>
-            <td><%= order_details.item.name %></td>
+            <%= order_details.item.name %><br>
             <% end %>
+              </td>
             <td><%= order.total_payment %></td>
-            <td> </td>
+            <td><%= order.status_i18n %></td>
             <td>
             <%= link_to order_path(order.id) do %>
               <button class = "primary">表示する</button>
